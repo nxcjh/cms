@@ -5,7 +5,7 @@ use Think\Controller;
 /**
  * use Common\Model 这块可以不需要使用，框架默认会加载里面的内容
  */
-class LoginController extends Controller {
+class LoginController extends CommonController {
 
 	/*
 		登录首页

@@ -19,6 +19,7 @@ class UploadImageModel extends Model {
         $this->_uploadObj->subName = date(Y) . '/' . date(m) .'/' . date(d);
     }
 
+    /*针对编辑器中图片上传*/
     public function upload() {
         $res = $this->_uploadObj->upload();
 
@@ -31,6 +32,7 @@ class UploadImageModel extends Model {
 
     public function imageUpload() {
         $res = $this->_uploadObj->upload();
+        // print_r($res);exit;
 
         if($res) {
             return '/' .self::UPLOAD . '/' . $res['file']['savepath'] . $res['file']['savename'];

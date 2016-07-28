@@ -50,6 +50,34 @@ class MenuModel extends Model{
 
 	}
 
+	public function updateStatusById($id,$status){
+		if(!is_numeric($id) || !$id){
+			throw_exception("ID不合法");
+		}
+		if(!is_numeric($status) || !$status){
+			throw_exception("状态不合法");
+		}		
+
+		$data['status'] = $status;
+		return $this -> _db -> where("menu_id=".$id) -> save($data);
+	}
+
+	public function getAdminMenus(){
+		$data = array(
+			'status' => array('neq',-1),
+			'type' => 1,
+		);
+		return $this -> _db -> where($data) -> order('listorder desc,menu_id desc') -> select();
+	}
+
+	public function getBarMenus(){
+		$data = array(
+			'status'	=> array('neq',-1),
+			'type'		=> 0,
+		);
+		return $this -> _db -> where($data) -> order("listorder desc,menu_id desc") -> select();
+	}
+
 }
 
 ?>
